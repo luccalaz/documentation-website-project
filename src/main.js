@@ -1,6 +1,5 @@
 // importing the sass stylesheet for bundling
 import "./../sass/styles.scss";
-import "@fortawesome/fontawesome-free"
 
 // JS content goes here
 // ...
