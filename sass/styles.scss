@@ -23,7 +23,7 @@ nav.finish-collapse .title h2 {
 }
 
 nav.finish-collapse .title i {
-    @apply py-3
+    @apply pt-1
 }
 
 button {
@@ -87,7 +87,7 @@ span[href] {
 }
 
 .code-window {
-    @apply flex flex-col p-4 bg-slate-900 rounded-md shadow-md w-full font-normal
+    @apply flex flex-col p-4 bg-slate-900 rounded-md shadow-md w-full font-normal overflow-x-auto whitespace-nowrap
 }
 
 @media screen and (max-width: 600px) {

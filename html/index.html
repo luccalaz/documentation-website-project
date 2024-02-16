@@ -46,11 +46,11 @@
                         <li><span>Open a terminal window.</span></li>
                         <li><span>Run the following command to update the packages and make sure you have the latest:</span></li>
                         <code class="code-window">
-                            <p>sudo apt update</p>
+                            sudo apt update
                         </code>
                         <li><span>Then, install the Apache package by running:</span></li>
                         <code class="code-window">
-                            <p>sudo apt install apache2</p>
+                            sudo apt install apache2
                         </code>
                         <li><span>Once the installation is complete, Apache should be up and running automatically. You can verify this by entering your server's IP address or hostname into a web browser. If Apache is installed correctly, you should see the default Apache2 Ubuntu Default Page.</span></li>
                     </ol>
@@ -65,11 +65,11 @@
                         <li><span>Open a terminal window.</span></li>
                         <li><span>Install PHP along with the necessary modules by running:</span></li>
                         <code class="code-window">
-                            <p>sudo apt install php8.2 libapache2-mod-php8.2 php8.2-mysql</p>
+                            sudo apt install php8.2 libapache2-mod-php8.2 php8.2-mysql
                         </code>
                         <li><span>After the installation is complete, restart the Apache web server to apply the changes:</span></li>
                         <code class="code-window">
-                            <p>sudo systemctl restart apache2</p>
+                            sudo systemctl restart apache2<
                         </code>
                     </ol>
                 </section>
@@ -82,11 +82,11 @@
                         <li><span>Open a terminal window.</span></li>
                         <li><span>Install the MySQL server package by running:</span></li>
                         <code class="code-window">
-                            <p>sudo apt install mysql-server</p>
+                            sudo apt install mysql-server
                         </code>
                         <li><span>Once the installation is complete, MySQL should start automatically. You can verify this by checking the MySQL service status:</span></li>
                         <code class="code-window">
-                            <p>sudo systemctl status mysql</p>
+                            sudo systemctl status mysql
                         </code>
                     </ol>
                     <section class="subsection" id="newuser">
@@ -95,22 +95,22 @@
                         <ol>
                             <li><span>Log in to the MySQL root account using the following command:</span></li>
                             <code class="code-window">
-                                <p>sudo mysql -u root -p</p>
+                                sudo mysql -u root -p
                             </code>
                             <li><span>Enter your MySQL root password when prompted.</span></li>
                             <li><span>Once logged in, create a new MySQL user with the desired username and password:</span></li>
                             <code class="code-window">
-                                <p>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';</p>
+                                CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
                             </code>
                             <li><span>Replace 'newuser' with the desired username and 'password' with the desired password.</span></li>
                             <li><span>Grant appropriate privileges to the new user. For example, to grant all privileges on all databases:</span></li>
                             <code class="code-window">
-                                <p>GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost' WITH GRANT OPTION;</p>
+                                GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost' WITH GRANT OPTION;
                             </code>
                             <li><span>Flush the privileges to apply the changes and exit the MySQL shell:</span></li>
                             <code class="code-window">
-                                <p>FLUSH PRIVILEGES;</p>
-                                <p>exit;</p>
+                                FLUSH PRIVILEGES;<br>
+                                exit;
                             </code>
                         </ol>
                     </section>
@@ -120,12 +120,12 @@
                         <ol>
                             <li><span>Log in to the MySQL root account if necessary:</span></li>
                             <code class="code-window">
-                                <p>sudo mysql -u root -p</p>
+                                sudo mysql -u root -p
                             </code>
                             <li><span>Enter your MySQL root password when prompted.</span></li>
                             <li><span>Once logged in, create a new database.</span></li>
                             <code class="code-window">
-                                <p>CREATE DATABASE dbname;</p>
+                                CREATE DATABASE dbname;
                             </code>
                             <li><span>Replace 'dbname' with the desired database name.</span></li>
                         </ol>
@@ -136,18 +136,18 @@
                         <ol>
                             <li><span>Log in to the MySQL root account if necessary:</span></li>
                             <code class="code-window">
-                                <p>sudo mysql -u root -p</p>
+                                sudo mysql -u root -p
                             </code>
                             <li><span>Enter your MySQL root password when prompted.</span></li>
                             <li><span>Grant the user permission to access and manipulate the new database:</span></li>
                             <code class="code-window">
-                                <p>GRANT ALL PRIVILEGES ON dbname.* TO 'username'@'localhost';</p>
+                                GRANT ALL PRIVILEGES ON dbname.* TO 'username'@'localhost';
                             </code>
                             <li><span>Replace 'username' with the MySQL username you created earlier.</span></li>
                             <li><span>Flush the privileges to apply the changes and exit the MySQL shell:</span></li>
                             <code class="code-window">
-                                <p>FLUSH PRIVILEGES;</p>
-                                <p>exit;</p>
+                                FLUSH PRIVILEGES;<br>
+                                exit;
                             </code>
                         </ol>
                     </section>
@@ -160,25 +160,24 @@
                     <ol>
                         <li><span>Navigate to the Apache sites-available directory:</span></li>
                         <code class="code-window">
-                            <p>cd /etc/apache2/sites-available;</p>
+                            cd /etc/apache2/sites-available;
                         </code>
                         <li><span>Create a new configuration file for your virtual host. You can copy the default configuration file as a template:</span></li>
                         <code class="code-window">
-                            <p>sudo cp 000-default.conf yourdomain.conf</p>
+                            sudo cp 000-default.conf yourdomain.conf
                         </code>
                         <li><span>Edit the newly created configuration file with a text editor of your choice:</span></li>
                         <code class="code-window">
-                            <p>sudo nano yourdomain.conf</p>
+                            sudo nano yourdomain.conf
                         </code>
                         <li><span>Configure the virtual host by specifying the server name, document root, and any other necessary settings. Here's an example configuration:</span></li>
-                        <code class="code-window overflow-scroll">
-                            <pre>
-    &lt;VirtualHost *:80>
-        ServerName yourdomain.com
-        DocumentRoot /var/www/yourdomain.com/public_html
-        ErrorLog ${APACHE_LOG_DIR}/yourdomain_error.log
-        CustomLog ${APACHE_LOG_DIR}/yourdomain_access.log combined
-    &lt;/VirtualHost></pre>
+                        <code class="code-window">
+                            &lt;VirtualHost *:80><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;ServerName yourdomain.com<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;DocumentRoot /var/www/yourdomain.com/public_html<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;ErrorLog ${APACHE_LOG_DIR}/yourdomain_error.log<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;CustomLog ${APACHE_LOG_DIR}/yourdomain_access.log combined<br>
+                            &lt;/VirtualHost>
                         </code>
                         <li><span>Save the changes and exit the text editor.</span></li>
                         <li><span>Enable the virtual host by creating a symbolic link to the sites-enabled directory:</span></li>
@@ -217,9 +216,9 @@
                 </section>
             </div>
             <footer class="py-10 bg-gray-900 transition-all duration-300 ease-in-out">
-                <div class="flex justify-between px-10 font-semibold">
+                <div class="flex justify-between align-middle px-10 font-semibold">
                     <span>© 2024 Lucca Lazzarini Silva</span>
-                    <span href="#top"><i class="fas fa-arrow-circle-up fa-2xl pt-3 transition-all hover:opacity-70"></i></span>
+                    <span href="#top"><i class="fas fa-arrow-circle-up fa-2xl transition-all hover:opacity-70"></i></span>
                 </div>
             </footer>
         </main>
