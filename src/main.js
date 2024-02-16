@@ -24,12 +24,37 @@ document.querySelectorAll("section[id]").forEach((section) => {
     observer.observe(section);
 });
 
-document.querySelectorAll("nav button, span[href]").forEach((element) => {
+document.querySelectorAll("nav button").forEach((element) => {
+    element.addEventListener("click", function() {
+        let id = element.getAttribute("href");
+        document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+        if (window.innerWidth <= 600 && id != "#mysql") {
+            console.log("test");
+            onHmbClick();
+        }
+    });
+});
+
+document.querySelectorAll("span[href]").forEach((element) => {
     element.addEventListener("click", function() {
         let id = element.getAttribute("href");
         document.querySelector(id).scrollIntoView({ behavior: "smooth" });
     });
 });
+
+function onHmbClick(e) {
+    navbar = document.querySelector("nav")
+
+        if (navbar.classList.contains("collapsed")) {
+            if (window.innerWidth > 600) document.querySelector("main").style.marginLeft = "16rem";
+            navbar.classList.toggle("collapsed")
+            setTimeout(() => navbar.classList.toggle("finish-collapse"), 300)
+        } else {
+            if (window.innerWidth > 600) document.querySelector("main").style.marginLeft = "3.5rem";
+            navbar.classList.toggle("collapsed")
+            navbar.classList.toggle("finish-collapse")
+        }
+}
 
 function main() {
     // navbar collapse
@@ -37,23 +62,9 @@ function main() {
     let collapseButton = document.getElementById("collapse");
     let subanchorButtons = document.querySelectorAll("button.subanchor");
 
-    hmbButton.addEventListener("click", () => {
-        navbar = document.querySelector("nav")
-
-        if (navbar.classList.contains("collapsed")) {
-            document.querySelector("main").style.marginLeft = "16rem";
-            navbar.classList.toggle("collapsed")
-            setTimeout(() => navbar.classList.toggle("finish-collapse"), 300)
-        } else {
-            document.querySelector("main").style.marginLeft = "3.5rem";
-            navbar.classList.toggle("collapsed")
-            navbar.classList.toggle("finish-collapse")
-        }
-    }); 
+    hmbButton.addEventListener("click", onHmbClick); 
 
     collapseButton.addEventListener("click", () => {
-        console.log("clicked")
-
         subanchorButtons.forEach((button) => {
             button.classList.toggle("hidden");
             collapseButton.classList.toggle("-rotate-180");

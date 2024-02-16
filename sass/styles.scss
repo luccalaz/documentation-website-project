@@ -100,14 +100,18 @@ span[href] {
     }
 
     main {
-        @apply hidden
+        @apply hidden ml-14
     }
 
     main .sections {
-        @apply ml-4 mr-0
+        @apply ml-4 mr-4
     }
 
     nav.collapsed + main {
-        @apply flex ml-6 mr-4
+        @apply flex
+    }
+
+    footer {
+        @apply text-sm
     }
 }
