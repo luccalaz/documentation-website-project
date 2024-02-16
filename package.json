@@ -1,7 +1,7 @@
 {
-  "name": "webpack-boilerplate-project",
+  "name": "documentation-website-project",
   "version": "1.0.0",
-  "homepage": "https://[your username here].github.io/[name of github repo]",
+  "homepage": "https://luccalaz.github.io/documentation-website-project/",
   "description": "",
   "main": "main.js",
   "scripts": {
