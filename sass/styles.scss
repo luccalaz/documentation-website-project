@@ -1,0 +1,113 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+nav {
+    transition: width 300ms ease-in-out;
+    @apply fixed top-0 left-0  bg-gray-950 h-full w-64 
+}
+
+nav.collapsed {
+    @apply w-14
+}
+
+nav.finish-collapse *:not(.title, i) {
+    @apply hidden
+}
+
+nav.finish-collapse .title h2 {
+    @apply invisible
+}
+
+nav.finish-collapse .title i {
+    @apply py-3
+}
+
+button {
+    @apply flex gap-4 h-10 pl-3 mx-3 my-1 items-center font-medium text-sm bg-transparent rounded-md transition-all ease-in-out duration-300
+}
+
+button.subanchor {
+    @apply ml-8 h-9
+}
+
+button.selected  {
+    @apply bg-gray-800
+}
+
+button:not(.selected):hover {
+    @apply bg-gray-900
+}
+
+main {
+    @apply ml-64 transition-all duration-300 ease-in-out
+}
+
+main .sections {
+    @apply my-[18px] ml-8 mr-[70px]
+}
+
+img {
+    @apply w-auto max-w-full
+}
+
+section {
+    @apply flex flex-col gap-3
+}
+
+section h2 {
+    @apply text-2xl font-bold
+}
+
+section ol {
+    @apply flex flex-col gap-2 list-decimal list-inside font-bold ml-4
+}
+
+section ol span {
+    @apply font-normal ml-1
+}
+
+section img {
+    @apply mx-5 rounded-md shadow-md w-[450px] max-w-full
+}
+
+.subsection {
+    @apply ml-4 mt-3
+}
+
+.subsection h2 {
+    @apply text-xl font-bold
+}
+
+span[href] {
+    @apply cursor-pointer
+}
+
+.code-window {
+    @apply flex flex-col p-4 bg-slate-900 rounded-md shadow-md w-full font-normal
+}
+
+@media screen and (max-width: 600px) {
+    nav {
+        @apply w-screen
+    }
+
+    nav.collapsed *:not(.title, i) {
+        @apply hidden
+    }
+
+    main {
+        @apply hidden
+    }
+
+    main .sections {
+        @apply ml-4 mr-0
+    }
+
+    nav.collapsed + main {
+        @apply flex ml-6 mr-4
+    }
+}

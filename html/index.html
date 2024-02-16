@@ -1,0 +1,226 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>LAMP Installation</title>
+        <link rel="stylesheet" href="bundle.css">
+        <script defer src="bundle.js"></script>
+    </head>
+    <body class="bg-gray-800 flex flex-col text-gray-300">
+        <nav>
+            <div class="title flex items-center gap-4 p-5">
+                <i class="fas fa-bars fa-lg cursor-pointer" id="hmbButton"></i>
+                <h2 class="font-bold font-sans">LAMP Installation</h2> 
+            </div>
+            <div class="anchors flex flex-col">
+                <button href="#intro">Introduction</button>
+                <button href="#apache">Installing Apache</button>
+                <button href="#php">Installing PHP</button>
+                <button href="#mysql" class="inline-flex justify-between"> Installing MySQL <i class="fas fa-chevron-down mt-3 mb-3 mr-3 transition-all" id="collapse"></i></button>
+                <button class="subanchor hidden" href="#newuser">Adding a new user</button>
+                <button class="subanchor hidden" href="#adddbase">Adding a new database</button>
+                <button class="subanchor hidden" href="#assperms">Assigning permissions</button>
+                <button href="#confvhost">Configuring a vhost</button>
+                <button href="#testlamp">Testing the LAMP stack</button>
+            </div>
+        </nav>
+        <main class="flex flex-col" id="top">
+            <div class="sections flex flex-col gap-6 transition-all duration-300">
+                <section id="intro">
+                    <h2><span href="#intro">Introduction</span></h2>
+                    <p>
+                        This documentation will guide you through how to set up a LAMP stack (Linux, Apache, MySQL, PHP) on your Ubuntu machine. A LAMP stack is a popular and powerful web development environment that allows you to create dynamic websites and applications.
+                    </p>
+                    <p>
+                        We will guide you on how to install and configure each component of the LAMP stack step by step. You will also learn how to test your LAMP stack and troubleshoot common issues. By the end, you will have a fully functional LAMP stack ready for your web projects. Let’s get started!
+                    </p>
+                </section>
+                <section id="apache">
+                    <h2><span href="#apache">Installing Apache</span></h2>
+                    <p>
+                        Apache is a widely used web server software that allows your Ubuntu machine to serve web content to users accessing it through their web browsers. To install Apache on your Linux Ubuntu machine, follow these steps:
+                    </p>
+                    <ol>
+                        <li><span>Open a terminal window.</span></li>
+                        <li><span>Run the following command to update the packages and make sure you have the latest:</span></li>
+                        <code class="code-window">
+                            <p>sudo apt update</p>
+                        </code>
+                        <li><span>Then, install the Apache package by running:</span></li>
+                        <code class="code-window">
+                            <p>sudo apt install apache2</p>
+                        </code>
+                        <li><span>Once the installation is complete, Apache should be up and running automatically. You can verify this by entering your server's IP address or hostname into a web browser. If Apache is installed correctly, you should see the default Apache2 Ubuntu Default Page.</span></li>
+                    </ol>
+                    <img src="./itworks.png">
+                </section>
+                <section id="php">
+                    <h2><span href="#php">Installing PHP</span></h2>
+                    <p>
+                        PHP is a server-side scripting language commonly used for web development. To install PHP on your Ubuntu machine, follow these steps: 
+                    </p>
+                    <ol>
+                        <li><span>Open a terminal window.</span></li>
+                        <li><span>Install PHP along with the necessary modules by running:</span></li>
+                        <code class="code-window">
+                            <p>sudo apt install php8.2 libapache2-mod-php8.2 php8.2-mysql</p>
+                        </code>
+                        <li><span>After the installation is complete, restart the Apache web server to apply the changes:</span></li>
+                        <code class="code-window">
+                            <p>sudo systemctl restart apache2</p>
+                        </code>
+                    </ol>
+                </section>
+                <section id="mysql">
+                    <h2><span href="#mysql">Installing MySQL</span></h2>
+                    <p>
+                        MySQL is a popular open-source relational database management system used to store and manage data. To install MySQL on your Ubuntu machine, follow these steps: 
+                    </p>
+                    <ol>
+                        <li><span>Open a terminal window.</span></li>
+                        <li><span>Install the MySQL server package by running:</span></li>
+                        <code class="code-window">
+                            <p>sudo apt install mysql-server</p>
+                        </code>
+                        <li><span>Once the installation is complete, MySQL should start automatically. You can verify this by checking the MySQL service status:</span></li>
+                        <code class="code-window">
+                            <p>sudo systemctl status mysql</p>
+                        </code>
+                    </ol>
+                    <section class="subsection" id="newuser">
+                        <h2><span href="#newuser">Adding a new user</span></h2>
+                        <p>To add a new user to MySQL, follow these steps:</p>
+                        <ol>
+                            <li><span>Log in to the MySQL root account using the following command:</span></li>
+                            <code class="code-window">
+                                <p>sudo mysql -u root -p</p>
+                            </code>
+                            <li><span>Enter your MySQL root password when prompted.</span></li>
+                            <li><span>Once logged in, create a new MySQL user with the desired username and password:</span></li>
+                            <code class="code-window">
+                                <p>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';</p>
+                            </code>
+                            <li><span>Replace 'newuser' with the desired username and 'password' with the desired password.</span></li>
+                            <li><span>Grant appropriate privileges to the new user. For example, to grant all privileges on all databases:</span></li>
+                            <code class="code-window">
+                                <p>GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost' WITH GRANT OPTION;</p>
+                            </code>
+                            <li><span>Flush the privileges to apply the changes and exit the MySQL shell:</span></li>
+                            <code class="code-window">
+                                <p>FLUSH PRIVILEGES;</p>
+                                <p>exit;</p>
+                            </code>
+                        </ol>
+                    </section>
+                    <section class="subsection" id="adddbase">
+                        <h2><span href="#adddbase">Adding a new database</span></h2>
+                        <p>To add a new database to MySQL, follow these steps:</p>
+                        <ol>
+                            <li><span>Log in to the MySQL root account if necessary:</span></li>
+                            <code class="code-window">
+                                <p>sudo mysql -u root -p</p>
+                            </code>
+                            <li><span>Enter your MySQL root password when prompted.</span></li>
+                            <li><span>Once logged in, create a new database.</span></li>
+                            <code class="code-window">
+                                <p>CREATE DATABASE dbname;</p>
+                            </code>
+                            <li><span>Replace 'dbname' with the desired database name.</span></li>
+                        </ol>
+                    </section>
+                    <section class="subsection" id="assperms">
+                        <h2><span href="#assperms">Assigning permissions</span></h2>
+                        <p>To assign your user permissions to our newly created database, follow these steps:</p>
+                        <ol>
+                            <li><span>Log in to the MySQL root account if necessary:</span></li>
+                            <code class="code-window">
+                                <p>sudo mysql -u root -p</p>
+                            </code>
+                            <li><span>Enter your MySQL root password when prompted.</span></li>
+                            <li><span>Grant the user permission to access and manipulate the new database:</span></li>
+                            <code class="code-window">
+                                <p>GRANT ALL PRIVILEGES ON dbname.* TO 'username'@'localhost';</p>
+                            </code>
+                            <li><span>Replace 'username' with the MySQL username you created earlier.</span></li>
+                            <li><span>Flush the privileges to apply the changes and exit the MySQL shell:</span></li>
+                            <code class="code-window">
+                                <p>FLUSH PRIVILEGES;</p>
+                                <p>exit;</p>
+                            </code>
+                        </ol>
+                    </section>
+                </section>
+                <section id="confvhost">
+                    <h2><span href="#confvhost">Configuring a vhost</span></h2>
+                    <p>
+                        A virtual host (vhost) allows Apache to serve multiple websites from the same IP address. To configure a vhost in Apache on your Ubuntu machine, follow these steps:
+                    </p>
+                    <ol>
+                        <li><span>Navigate to the Apache sites-available directory:</span></li>
+                        <code class="code-window">
+                            <p>cd /etc/apache2/sites-available;</p>
+                        </code>
+                        <li><span>Create a new configuration file for your virtual host. You can copy the default configuration file as a template:</span></li>
+                        <code class="code-window">
+                            <p>sudo cp 000-default.conf yourdomain.conf</p>
+                        </code>
+                        <li><span>Edit the newly created configuration file with a text editor of your choice:</span></li>
+                        <code class="code-window">
+                            <p>sudo nano yourdomain.conf</p>
+                        </code>
+                        <li><span>Configure the virtual host by specifying the server name, document root, and any other necessary settings. Here's an example configuration:</span></li>
+                        <code class="code-window overflow-scroll">
+                            <pre>
+    &lt;VirtualHost *:80>
+        ServerName yourdomain.com
+        DocumentRoot /var/www/yourdomain.com/public_html
+        ErrorLog ${APACHE_LOG_DIR}/yourdomain_error.log
+        CustomLog ${APACHE_LOG_DIR}/yourdomain_access.log combined
+    &lt;/VirtualHost></pre>
+                        </code>
+                        <li><span>Save the changes and exit the text editor.</span></li>
+                        <li><span>Enable the virtual host by creating a symbolic link to the sites-enabled directory:</span></li>
+                        <code class="code-window">
+                            <p>sudo a2ensite yourdomain.conf</p>
+                        </code>
+                        <li><span>Reload Apache to apply the changes:</span></li>
+                        <code class="code-window">
+                            <p>sudo systemctl reload apache2</p>
+                        </code>
+                    </ol>
+                </section>
+                <section id="testlamp">
+                    <h2><span href="#testlamp">Testing the LAMP stack</span></h2>
+                    <p>
+                        To test that your LAMP (Linux, Apache, MySQL, PHP) stack is working correctly, follow these steps:
+                    </p>
+                    <ol>
+                        <li><span>Create a PHP info file in the Apache document root directory:</span></li>
+                        <code class="code-window">
+                            <p>sudo nano /var/www/html/info.php</p>
+                        </code>
+                        <li><span>Add the following PHP code to the file:</span></li>
+                        <code class="code-window">
+                            <p>&lt;?php</p>
+                            <p>phpinfo();</p>
+                            <p>?></p>
+                        </code>
+                        <li><span>Save the changes and exit the text editor.</span></li>
+                        <li><span>Open a web browser and navigate to http://your_server_ip/info.php (replace 'your_server_ip' with your server's IP address).</span></li>
+                        <li><span>If PHP is installed and configured correctly, you should see a page displaying detailed information about your PHP configuration.</span></li>
+                    </ol>
+                    <p>
+                        This concludes the installation and configuration of Apache, PHP, MySQL, and setting up a virtual host on your Linux Ubuntu machine. You now have a fully functional LAMP stack ready for web development and hosting.
+                    </p>
+                </section>
+            </div>
+            <footer class="py-10 bg-gray-900 transition-all duration-300 ease-in-out">
+                <div class="flex justify-between px-10 font-semibold">
+                    <span>© 2024 Lucca Lazzarini Silva</span>
+                    <span href="#top"><i class="fas fa-arrow-circle-up fa-2xl pt-3 transition-all hover:opacity-70"></i></span>
+                </div>
+            </footer>
+        </main>
+    </body>
+</html>
