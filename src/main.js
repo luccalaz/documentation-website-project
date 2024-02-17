@@ -57,7 +57,13 @@ function main() {
     document.querySelectorAll("nav button").forEach((element) => {
         element.addEventListener("click", function() {
             let id = element.getAttribute("href");
-            document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+            window.scrollTo({
+                behavior: 'smooth',
+                top:
+                    document.querySelector(id).getBoundingClientRect().top -
+                    document.body.getBoundingClientRect().top -
+                    14,
+            })
             if (window.innerWidth <= 600 && id != "#mysql") {
                 onHmbClick();
             }
@@ -67,7 +73,13 @@ function main() {
     document.querySelectorAll("span[href]").forEach((element) => {
         element.addEventListener("click", function() {
             let id = element.getAttribute("href");
-            document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+            window.scrollTo({
+                behavior: 'smooth',
+                top:
+                    document.querySelector(id).getBoundingClientRect().top -
+                    document.body.getBoundingClientRect().top -
+                    14,
+            })
         });
     });
 }
