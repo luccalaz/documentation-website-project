@@ -71,8 +71,20 @@ module.exports = {
     optimization: {
         minimizer: [
             new CssMinimizerPlugin(),
-            new TerserPlugin()
-        ]
+            new TerserPlugin({
+                terserOptions: {
+                  compress: {
+                    drop_console: true,
+                  },
+                  format: {
+                    comments: false,
+                  },
+                  mangle: true,
+                },
+                extractComments: false
+              }),
+        ],
+        minimize: true,
     },
     // plugins operate across all code
     plugins: [
