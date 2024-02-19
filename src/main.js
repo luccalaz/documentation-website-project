@@ -1,20 +1,20 @@
 // importing the sass stylesheet for bundling
 import "./../sass/styles.scss";
 
-let navbar = document.querySelector("nav");
+let navbar;
 
 function onHmbClick(e) {
     navbar = document.querySelector("nav");
 
-    if (navbar.classList.contains("collapsed")) {
-        if (window.innerWidth > 600) document.querySelector("main").style.marginLeft = "16rem";
-        navbar.classList.toggle("collapsed");
-        setTimeout(() => navbar.classList.toggle("finish-collapse"), 300);
-    } else {
-        if (window.innerWidth > 600) document.querySelector("main").style.marginLeft = "3.5rem";
-        navbar.classList.toggle("collapsed");
-        navbar.classList.toggle("finish-collapse");
-    }
+        if (navbar.classList.contains("collapsed")) {
+            if (window.innerWidth > 600) document.querySelector("main").style.marginLeft = "16rem";
+            navbar.classList.toggle("collapsed");
+            setTimeout(() => navbar.classList.toggle("finish-collapse"), 300);
+        } else {
+            if (window.innerWidth > 600) document.querySelector("main").style.marginLeft = "3.5rem";
+            navbar.classList.toggle("collapsed");
+            navbar.classList.toggle("finish-collapse");
+        }
 }
 
 function main() {
@@ -41,8 +41,8 @@ function main() {
     });
 
     // navbar start collapsed on mobile
-    if (window.innerWidth <= 600) {
-        navbar.classList.add("collapsed", "finish-collapse");
+    if (window <= 600) {
+        navbar.classList.add("collapse");
     }
 
     // event listeners
