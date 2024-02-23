@@ -101,7 +101,7 @@
                             <li><span>Enter your MySQL root password when prompted.</span></li>
                             <li><span>Once logged in, create a new MySQL user with the desired username and password:</span></li>
                             <code class="code-window">
-                                CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+                                CREATE USER 'newuser'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
                             </code>
                             <li><span>Replace 'newuser' with the desired username and 'password' with the desired password.</span></li>
                             <li><span>Grant appropriate privileges to the new user. For example, to grant all privileges on all databases:</span></li>
@@ -142,9 +142,9 @@
                             <li><span>Enter your MySQL root password when prompted.</span></li>
                             <li><span>Grant the user permission to access and manipulate the new database:</span></li>
                             <code class="code-window">
-                                GRANT ALL PRIVILEGES ON dbname.* TO 'username'@'localhost';
+                                GRANT ALL ON dbname.* TO 'username'@'%';
                             </code>
-                            <li><span>Replace 'username' with the MySQL username you created earlier.</span></li>
+                            <li><span>Replace 'dbname' with the database name and 'username' with the username you created earlier.</span></li>
                             <li><span>Flush the privileges to apply the changes and exit the MySQL shell:</span></li>
                             <code class="code-window">
                                 FLUSH PRIVILEGES;<br>
